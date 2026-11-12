@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Gradient Generator</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            background-image: linear-gradient(to right,#051937, #008793);
+            color: #fff;
+        }
+        .linear-gradient-buttons{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+        button{
+            padding: 4px 16px;
+            font-weight: 500;
+            font-size: 17px;
+            border-radius: 20px;
+            border: none;
+        }
+        #btn1{
+            background-color: #051937;
+            color: #fff;
+        }
+        #btn2{
+            background-color: #008793;
+            color: #fff;
+        }
+        .gradient-code{
+            width: 80%;
+            border-left: 2px solid #ccc;
+            padding: 10px;
+            background-color: #7a6a6a7b;
+            border-radius: 8px;
+            margin-top: 30px;
+            color: #fff;
+            margin-left: 12%
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="linear-gradient-buttons">
+            <button id="btn1">#051937</button>
+            <button id="btn2">#008793</button>
+        </div>
+        <p>click to copy the code 👇🏻</p>
+        <div class="gradient-code">
+            background-image: linear-gradient(to right, #051937, #008793)
+        </div>
+    </div>
+    <script>
+        let btn1 = document.querySelector("#btn1");
+        let btn2 = document.querySelector("#btn2");
+        let copyCode = document.querySelector(".gradient-code");
+
+        let rgb1 = "#051937";
+        let rgb2 = "#008793";
+
+        let hexValue = ()=>{
+            let hexCode = "0123456789abcdef";
+            let color = "#";
+
+            for(let i=0; i<6; i++){
+            color = color + hexCode[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        btn1.addEventListener("click",()=>{
+            rgb1 = hexValue();
+            console.log(rgb1);
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            copyCode.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            btn1.innerHTML = `${rgb1}`;
+            btn1.style.backgroundColor = `${rgb1}`;
+        })
+        btn2.addEventListener("click",()=>{
+            rgb2 = hexValue();
+            console.log(rgb2);
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            copyCode.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            btn2.innerHTML = `${rgb2}`;
+            btn2.style.backgroundColor = `${rgb2}`;
+        })
+        copyCode.addEventListener("click",()=>{
+            navigator.clipboard.writeText(copyCode.innerText);
+            alert("copy code succefully")
+        })
+    </script>
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>
